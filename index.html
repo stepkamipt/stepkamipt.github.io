@@ -7,15 +7,16 @@
         <link type="text/css" rel="stylesheet" href="style.css" />
     </head>
     <body id = "background">
-        <a href="intent://ru.yandex.yandexmaps.action.SHOW_POINT_ON_MAP
-                    &lat=37.577851
-                    &lon=55.736354
-                    &z=12
-                    &desc=Здесь
-                #Intent;
-                    scheme=http;
-                    package=ru.yandex.yandexmaps;
+        <a href="intent:
+                    //yandexmaps/
+                    #intent;
+                        package=ru.yandex.yandexmaps;
+                        action=SHOW_POINT_ON_MAP;
+                        scheme=http;
+                        S.lat=55.758192;
+                        S.lon=37.642817;
                 end">Ссылка на карту</a>
+        
         <a href="intent://ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP
                     &lat_to=55.758192
                     &lon_to=37.642817
