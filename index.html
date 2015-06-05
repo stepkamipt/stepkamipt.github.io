@@ -5,48 +5,23 @@
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
         <title>A_A_A_A_A_A_A</title>
         <link type="text/css" rel="stylesheet" href="style.css" />
-        <script src="scripts.js"></script>
-
     </head>
     <body id = "background">
-        <a href="intent://maps.yandex.ru/?pt=37.577851,55.736354&ll=37.577851,55.736354&z=12&desc=Здесь#Intent;scheme=http;package=ru.yandex.yandexmaps;end">Метка</a>
-        <div class = "button" id = "main_button">
-            <a>Make world better!</a>
-        </div>
-
-        <div>
-            <p class = "important_text" id = "color">
-                #A20000
-            <p>
-        </div>
-
-        <div id = "ranges" class = "important_text">
-            <div class = "row">
-                <div class = "color_names" > 
-                    <span class = "color_name"> R </span>
-                </div>
-                <div class = "colors">
-                    <input id = "red" type="range" min="0" max="255" step="1">
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class = "color_names" > 
-                    <span class = "color_name"> G </span>
-                </div>
-                <div class = "colors">
-                    <input id = "green" type="range" min="0" max="255" step="1">
-                </div>
-            </div>
-
-            <div class = "row">
-                <div class = "color_names" > 
-                    <span class = "color_name"> B </span>
-                </div>
-                <div class = "colors">
-                    <input id = "blue" type="range" min="0" max="255" step="1">
-                </div>
-            </div>
-        </div>
+        <a href="intent://ru.yandex.yandexmaps.action.SHOW_POINT_ON_MAP
+                    &lat=37.577851
+                    &lon=55.736354
+                    &z=12
+                    &desc=Здесь
+                #Intent;
+                    scheme=http;
+                    package=ru.yandex.yandexmaps;
+                end">Ссылка на карту</a>
+        <a href="intent://ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP
+                    &lat_to=55.758192
+                    &lon_to=37.642817
+                #Intent;
+                    scheme=http;
+                    package=ru.yandex.yandexnavi;
+                end">Ссылка на навигатор</a>
     </body>
 </html>
