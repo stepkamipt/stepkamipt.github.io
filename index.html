@@ -1,18 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<head>
+  <title>HSE dzzzr bot</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="scripts.js"></script>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        <title>A_A_A_A_A_A_A</title>
-        <link type="text/css" rel="stylesheet" href="style.css" />
-    </head>
-    <body id = "background">
-        <a href="intent://maps.yandex.ru/?pt=37.619902,55.753716&z=11#Intent;package=ru.yandex.yandexmaps;scheme=http;end">Ссылка на карту</a>
-        
-        
-        
-        
-        <a href="intent://ApApA#Intent;action=ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP;scheme=http;end">Ссылка на навигатор</a>
 
-    </body>
+  <div class="panel-body">
+    <form class="form-horizontal row-border">
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label" id="parkingLabel">Корды парковки</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" id="parkingText" type="text">
+        </div>
+        <div class="col-md-2">
+          <button class="btn" id="parkingButton">Отправить</button>
+        </div>
+      </div>
+      </br>
+
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label" id="locationLabel">Корды локи</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" id="locationText" type="text">
+        </div>
+        <div class="col-md-2">
+          <button class="btn" id="locationButton">Отправить</button>
+        </div>
+      </div>
+      </br>
+
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label" id="ksLabel">КС</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" id="ksText" type="text">
+        </div>
+        <div class="col-md-2">
+          <button class="btn" id="ksButton">Отправить</button>
+        </div>
+      </div>
+      </br>
+
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label" id="textLabel">Текст</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" id="textText" type="text">
+        </div>
+        <div class="col-md-2">
+          <button class="btn" id="textButton">Отправить</button>
+        </div>
+      </div>
+      </br>      
+      <div class="form-group">
+        <div class="col-md-2">
+          <label class="control-label" id="passwordLabel">Пароль</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" id="passwordText" type="text">
+        </div>
+        <div class="col-md-2">
+          <button class="btn" id="passwordButton">Получиь</button>
+        </div>
+      </div>
+
+      </br>
+    </form>
+  </div>
+</body>
 </html>
