@@ -154,7 +154,14 @@
             }
 
             var imgData = self.preview.get(0).toDataURL('image/png');
-            alert(imgData)
+            $.post('http://localhost/ajax/uploadthumbnail',
+                {
+                    img : imgData
+                }, function(data) {
+                    console.log(data);
+                });
+
+
             return imgData.split(";base64,")[1];
         }
     };

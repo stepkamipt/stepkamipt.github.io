@@ -26,6 +26,7 @@ $(document).ready(function (){
         });   
     };
 
+
     $('#textButton').on('click', function (e) {
         e.preventDefault();
         SendInfoToServer('text', $('#textText').val() );

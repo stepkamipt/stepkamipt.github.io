@@ -1,84 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Jcrop: the jQuery Image Cropping Plugin</title>
-  <link rel="stylesheet" href="demos/demo_files/main.css" type="text/css" />
-  <link rel="stylesheet" href="demos/demo_files/demos.css" type="text/css" />
-  <script src="js/jquery.min.js"></script>
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-</head>
-<body>
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="jquery.Jcrop.min.js"></script>
+    <script src="jquery.jcrop-canvas.js"></script>
+    <style>
+      .cropper {
+        overflow: hidden;
+      }
 
-<div class="container">
-<div class="row">
-<div class="span12">
-<div class="jc-demo-box">
+      .cropper .file-input {
+        margin-bottom: 8px;
+        text-align: center;
+      }
 
-<div class="page-header">
-<ul class="breadcrumb first">
-  <li><a href="http://tapmodo.com/">Tapmodo</a> <span class="divider">/</span></li>
-  <li class="active">Jcrop Plugin</li>
-</ul>
-<h1>Jcrop Image Cropping Plugin</h1>
-</div>
+      .cropper .help {
+        background: #ccc;
+        border: dashed 4px #444;
+        border-radius: 8px;
+        padding: 50px 0;
+        text-align: center;
+      }
 
+      .cropper .preview-container {
+        display: none;
+        margin-top: 8px;
+        overflow:hidden;
+      }
 
-<big>
-	<a href="http://deepliquid.com/content/Jcrop.html"><b>Jcrop</b></a>
-	is the image cropping plugin for
-	<a href="http://jquery.com/">jQuery</a>.<br />
-	You've successfully unpacked Jcrop.
-</big>
+      .cropper .rotate {
+        display: none;
+      }
 
-<h3>Static Demos</h3>
+      .cropper .source {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='cropContainer'>
+      <div class="cropper">
+        <div class="file-input"><input type="file" /></div>
+        <div class="help">Drag and drop an image to begin cropping</div>
+        <img class="source" />
+        <div><a class="rotate" href="javascript:void(0)">rotate</a></div>
+        <div class="preview-container"></div>
+      </div>
+    </div>
+    <button>Crop It</button>
+    <script>
+    var cropContainer = $('#cropContainer');
+    cropContainer.jcropCanvas({
+      sourceImage: '#cropContainer source',
+      previewContainer: '#cropContainer preview-container',
+      width: 200,
+      height: 150,
+	  showPreview: false
+    }).load(function() {
+      $('#cropContainer .help').hide();
+      $('#cropContainer a.rotate').show();
+    }).bind('error.jcrop-canvas', function(err) {
+      alert('Please use Chrome 10+ or FF 4+ to crop images');
+    });
 
-<ul>
-	<li><a href="demos/tutorial1.html">Hello World</a>
-		&mdash; default behavior</li>
-	<li><a href="demos/tutorial2.html">Basic Handler</a>
-		&mdash; basic form integration</li>
-	<li><a href="demos/tutorial3.html">Aspect Ratio w/ Preview Pane</a>
-		&mdash; nice visual example</li>
-	<li><a href="demos/tutorial4.html">Animation/Transitions</a>
-		&mdash; animation/fading demo</li>
-	<li><a href="demos/tutorial5.html">API Interface</a>
-		&mdash; real-time API example</li>
-	<li><a href="demos/styling.html">Styling Example</a>
-		&mdash; style Jcrop dynamically with CSS
-    <small>New in 0.9.10</small>
-    </li>
-  <li><a href="demos/non-image.html">Non-Image Elements</a>
-    &mdash; attach to other DOM block elements
-    <small>New in 0.9.10</small>
-    </li>
-</ul>
+    cropContainer.find('a.rotate').click(function() {
+      cropContainer.jcropCanvas('rotate');
+    });
 
-<h3>Live Demo</h3>
-
-<ul>
-	<li><a href="demos/crop.php">PHP Cropping Demo</a>
-		&mdash; requires PHP/gd support</li>
-</ul>
-
-<h3>Jcrop Links</h3>
-
-<ul>
-	<li><a href="http://deepliquid.com/content/Jcrop.html">Jcrop Home</a></li>
-	<li><a href="http://deepliquid.com/content/Jcrop_Manual.html">Jcrop Manual</a></li>
-</ul>
-
-<div class="tapmodo-footer">
-  <a href="http://tapmodo.com" class="tapmodo-logo segment">tapmodo.com</a>
-  <div class="segment"><b>&copy; 2008-2013 Tapmodo Interactive LLC</b><br />
-    Jcrop is free software released under <a href="MIT-LICENSE.txt">MIT License</a>
-  </div>
-</div>
-<div class="clearfix"></div>
-
-</div>
-</div>
-</div>
-</div>
-
-</body>
+    $('button').click(function(e) {
+      alert(cropContainer.jcropCanvas('createCrop'));
+    });
+    </script>
+  </body>
 </html>

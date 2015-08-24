@@ -1,66 +1,31 @@
-Jcrop Image Cropping Plugin
-===========================
-
-Jcrop is the quick and easy way to add image cropping functionality to
-your web application. It combines the ease-of-use of a typical jQuery
-plugin with a powerful cross-platform DHTML cropping engine that is
-faithful to familiar desktop graphics applications.
-
-Cross-platform Compatibility
-----------------------------
-
-* Firefox 2+
-* Safari 3+
-* Opera 9.5+
-* Google Chrome 0.2+
-* Internet Explorer 6+
-
-Feature Overview
-----------------
-
-* Attaches unobtrusively to any image
-* Supports aspect ratio locking
-* Supports minSize/maxSize setting
-* Callbacks for selection done, or while moving
-* Keyboard support for nudging selection
-* API features to create interactivity, including animation
-* Support for CSS styling
-* Experimental touch-screen support (iOS, Android, etc)
-
-Contributors
+jcrop-canvas
 ============
+Integrates the jQuery Jcrop plugin with an HTML5 canvas so you can do
+client-side cropping.  Also supports drag and drop of files.
 
-**Special thanks to the following contributors:**
+Prerequisites
+=============
+ - jQuery
+ - Jcrop (https://github.com/tapmodo/Jcrop)
 
-* [Bruno Agutoli](mailto:brunotla1@gmail.com)
-* dhorrigan
-* Phil-B
-* jaymecd
-* all others who have committed their time and effort to help improve Jcrop
+Browser Support
+===============
+ - Chrome 8+
+ - FF 4+
+ - Safari nightly-builds (needs window.URL.createObjectURL)
 
-MIT License
-===========
+Options
+=======
+ - boxWidth: the width of the source image
+ - height: the height of the crop
+ - mimeType: 'image/jpg' or 'image/png'
+ - sourceImageSelector: the <img> which will house the image to be cropped
+ - previewContainerSelector: the element which will house the crop
+ - width: the width of the crop
 
-**Jcrop is free software under MIT License.**
+Example Usage
+=============
+See example.html 
 
-#### Copyright (c) 2008-2012 Tapmodo Interactive LLC,<br />http://github.com/tapmodo/Jcrop
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+NOTE: Run it through a webserver, not as a local file (python -m 
+SimpleHTTPServer)
