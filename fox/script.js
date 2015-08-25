@@ -1,7 +1,6 @@
 $(document).ready(function (){
     ymaps.ready(init);
     var myMap;
-    var placemarks = [];
     var placemarkId = 1;
     var distances = [];
 
@@ -23,10 +22,24 @@ $(document).ready(function (){
             changeRoutes();
         });
 
+        var myButton2 = new ymaps.control.Button("Картинку");
+        myButton2.events.add("press", function(e) {
+            getImageUrl();
+        });
+
         myMap.controls.add(myButton, {
             float: "none",
             position: {
                 top: 10,
+                left: 10
+            },
+            selectOnClick: false
+        });
+
+        myMap.controls.add(myButton2, {
+            float: "none",
+            position: {
+                top: 50,
                 left: 10
             },
             selectOnClick: false
@@ -57,7 +70,6 @@ $(document).ready(function (){
         if( tagN != null) {
             geoPlacemark.properties.set("iconContent", tagN);
 
-            placemarks.push( {id:tagN, placemark:geoPlacemark});
             changeRoutes();
             placemarkId +=1;
         }
@@ -83,7 +95,50 @@ $(document).ready(function (){
         $('#routes-links').val( text );
 
         //computeBestRoute();
+        getImageUrl();
     };
+
+    function min(x,y) {
+        if( x < y ) {
+            return x;
+        } else {
+            return y;
+        }
+    };
+    function getImageUrl() {
+        var url = "https://static-maps.yandex.ru/1.x/?ll=";
+        url +=  myMap.getCenter();
+        url += "&size="+ min(650,$('#map-container').width()) + ",400";
+        url += "&z=" + myMap.getZoom();
+        url += "&l=map&pt=";
+        
+        myMap.geoObjects.each(function (item) {
+            if(item.geometry && item.geometry.getType() == "Point") {
+                url += item.geometry.getCoordinates();
+                url += ",pm2dbl" + item.properties.get("iconContent") + "~";
+            }
+        });
+        url = url.substring(0,url.length-1);
+        document.getElementById("image-map-container").src = url;
+        console.log(url);
+        /*
+        37.620070,55.753630& \
+size=450,450&z=13&l=map&pt=37.620070,55.753630,pmwtm1~37.64,55.76363, \ 
+pmwtm99
+        myMap.geoObjects.each(function (item) {
+            if(item.geometry && item.geometry.getType() == "Point") {
+                text += "точка: " + item.properties.get("iconContent");
+                text += " корды: ";
+                text += "yandexnavi://build_route_on_map?lat_to=";
+                text += item.geometry.getCoordinates()[1].toFixed(5);
+                text += "&lon_to=";
+                text += item.geometry.getCoordinates()[0].toFixed(5);
+                text += "\n";
+                pointsCount+=1;
+            }
+        });
+*/
+    }
 
 /*
     function computeBestRoute() {
