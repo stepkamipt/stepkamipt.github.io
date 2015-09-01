@@ -173,7 +173,7 @@ $(document).ready(function (){
     function getWay(placemarks_all) {
         var placemarks = [];
         var start_point;
-        var startId;
+        var startId = -1;
         var inputArr =[];
         for(var i = 0; i < placemarks_all.length; i++ ) {
             if(placemarks_all[i].properties.get("iconContent") != 0 ) {
@@ -187,10 +187,11 @@ $(document).ready(function (){
         var pointsCount = placemarks.length;
 
         var permutations = permutator(inputArr);
-
-        for(var i = 0; i < permutations.length; i++) {
-            permutations[i].push(startId);
-            permutations[i].unshift(startId);
+        if( startId != -1 ) {
+            for(var i = 0; i < permutations.length; i++) {
+                permutations[i].push(startId);
+                permutations[i].unshift(startId);
+            }
         }
 
         var bestId = 0;
