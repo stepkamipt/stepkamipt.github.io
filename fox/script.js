@@ -67,8 +67,8 @@ $(document).ready(function (){
         var geoPlacemark = new ymaps.Placemark(
             location,
             {iconContent: placemarkId},
-            {draggable: true}
-        );
+            {draggable: true})
+       
         
         myMap.geoObjects.add(geoPlacemark);
         geoPlacemark.events.add("drag", function(e){
@@ -83,7 +83,9 @@ $(document).ready(function (){
         var tagN = prompt("Введите номер метки", placemarkId);
         if( tagN != null) {
             geoPlacemark.properties.set("iconContent", tagN);
-
+            if(tagN=="0") {
+                geoPlacemark.options.set("preset", 'islands#redIcon');
+            }
             changeRoutes();
             placemarkId +=1;
         }
@@ -168,14 +170,28 @@ $(document).ready(function (){
         return time;
     }
 
-    function getWay(placemarks) {
-        var pointsCount = placemarks.length;
+    function getWay(placemarks_all) {
+        var placemarks = [];
+        var start_point;
+        var startId;
         var inputArr =[];
-        for(var i=0;i<pointsCount;i++) {
-            inputArr.push(i);
+        for(var i = 0; i < placemarks_all.length; i++ ) {
+            if(placemarks_all[i].properties.get("iconContent") != 0 ) {
+                placemarks.push(placemarks_all[i])
+                inputArr.push(i)
+            } else {
+                startId = i;
+                start_point = placemarks_all[i];
+            }
         }
+        var pointsCount = placemarks.length;
 
         var permutations = permutator(inputArr);
+
+        for(var i = 0; i < permutations.length; i++) {
+            permutations[i].push(startId);
+            permutations[i].unshift(startId);
+        }
 
         var bestId = 0;
         var bestTime = getTime(permutations[0]);
@@ -280,9 +296,7 @@ pmwtm99
     function computeBestRoute() {
         distances = [];
         var pointsCount = placemarks.length;
-
         var distancesCount = pointsCount * pointsCount;
-
         for(var i=0; i < pointsCount; i++) {
             distances[i]=[]
             for(var j=0; j < pointsCount; j++) {
@@ -305,9 +319,6 @@ pmwtm99
             };         
         }
     };
-
-
-
 */
 
     $('#sumbit-point').click(function(){
