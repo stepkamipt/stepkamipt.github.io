@@ -121,7 +121,7 @@
     };
 
     var nPoints = 0;
-    var discretization = 8;
+    var discretization = 4;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
@@ -153,7 +153,7 @@
 			} );
 		} else {
             nPoints += 1;
-            if( nPoints == ( 512 * 256 ) / ( 8 * 8 ) ) {
+            if( nPoints == ( 512 * 256 ) / ( 4 * 4 ) ) {
                 discretization = 1;
                 draw("file2.jpeg");
             }
