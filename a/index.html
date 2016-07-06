@@ -116,6 +116,12 @@
 		return s.rect( x, y, width, height).attr( { "fill": color( x + width/2, y + height/2 ), "stroke": "none" } );
 	};
 
+    var rectOrig = function( x, y, width, height ) {
+        return s.rect( x, y, width, height);
+    };
+
+    var nPoints = 0;
+
 	var Boobs = function( b, blocked ) {
 		this.b = b;
 		this.blocked = blocked;
@@ -135,7 +141,7 @@
 					if ( ( X >= x ) && ( X <= x + w ) && ( Y >= y ) && ( Y <= y + w ) ) tmp1 = 1;
 					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y ) && ( Y <= y + w ) ) tmp2 = 1;
 					if ( ( X >= x ) && ( X <= x + w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp3 = 1;
-					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp1 = 1;
+					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp4 = 1;
 					new Boobs( rect( x, y, w, w ), tmp1 );
 					new Boobs( rect( x + w, y, w, w ), tmp2 );
 					new Boobs( rect( x, y + w, w, w ), tmp3 );
@@ -144,7 +150,13 @@
 			}, function() {
 				blocked = 0;
 			} );
-		}
+		} else {
+
+            nPoints += 1;
+            if( nPoints > 256 ) {
+                alert( 'done!')
+            }
+        }
 	};
 
 	var draw = function() {
