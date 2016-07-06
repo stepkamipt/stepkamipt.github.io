@@ -121,7 +121,7 @@
     };
 
     var nPoints = 0;
-    var discretization = 16;
+    var discretization = 4;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
@@ -155,12 +155,12 @@
             nPoints += 1;
             if( nPoints == ( 512 * 256 ) / ( 16 * 16 ) ) {
                 discretization = 1;
-                draw();
+                draw("file2.jpeg");
             }
         }
 	};
 
-	var draw = function() {
+	var draw = function( filename ) {
 		s.clear();
 
 		new Boobs( rect( 0, 0, 512, 512 ), 0 );
@@ -168,10 +168,7 @@
 		var ctx = document.getElementById('imgCanvas').getContext('2d');
 		var img = new Image();
 
-		var n = Math.round( Math.random() * 89 );
-
-		img.src = "/images/diy/" + ( n + 1 ) + ".jpg";
-		img.src = "file.jpeg";
+		img.src = filename;
 		img.onload = function() {
 			ctx.drawImage( img, 0, 0 );
 			color = function( x, y ) {
@@ -181,11 +178,7 @@
 		};
 	};
 
-	draw();
-
-	$( "#button_next" ).click( function() {
-		draw();
-	} );
+	draw( "file.jpeg");
 
 	$( ".div_b_class" )
 		.css( "top", $( window ).height() - $( ".div_b_class" ).height() - 20 )
