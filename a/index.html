@@ -121,11 +121,12 @@
     };
 
     var nPoints = 0;
+    var discretization = 16;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
 		this.blocked = blocked;
-		if ( b.attrs.width > 16 ) {
+		if ( b.attrs.width > discretization ) {
 			this.b.hover( function( e ) {
 				if ( blocked == 0 ) {
 					var e = e || window.event;
@@ -151,10 +152,10 @@
 				blocked = 0;
 			} );
 		} else {
-
             nPoints += 1;
-            if( nPoints > 256 ) {
-                alert( 'done!')
+            if( nPoints == 512 * 256 / 16 ) {
+                discretization = 1;
+                draw();
             }
         }
 	};
