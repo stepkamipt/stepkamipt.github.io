@@ -117,11 +117,11 @@
 	};
 
     var rectOrig = function( x, y, width, height ) {
-        return s.image("file2.jpeg", x, y, width, height)
+        return s.image("file2.jpeg", x, y, width, height).transform("t" + sourceX + "," + sourceY + "s" + scaleX +","+ scaleY + ",0,0");
     };
 
     var nPoints = 0;
-    var discretization = 32;
+    var discretization = 4;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
@@ -151,6 +151,11 @@
 			}, function() {
 				blocked = 0;
 			} );
+		} else {
+			var X = e.layerX;
+			var Y = e.layerY;
+			var w = b.attrs.width;
+			rect(x,y,w,w)
 		};
 	};
 
