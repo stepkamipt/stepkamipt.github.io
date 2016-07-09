@@ -121,7 +121,7 @@
     };
 
     var nPoints = 0;
-    var discretization = 128;
+    var discretization = 32;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
@@ -143,25 +143,15 @@
 					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y ) && ( Y <= y + w ) ) tmp2 = 1;
 					if ( ( X >= x ) && ( X <= x + w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp3 = 1;
 					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp4 = 1;
-					new Boobs( rect( x, y, w, w ), tmp1 );
-					new Boobs( rect( x + w, y, w, w ), tmp2 );
-					new Boobs( rect( x, y + w, w, w ), tmp3 );
-					new Boobs( rect( x + w, y + w, w, w ), tmp4 );
+					new Boobs( rectOrig( x, y, w, w ), tmp1 );
+					new Boobs( rectOrig( x + w, y, w, w ), tmp2 );
+					new Boobs( rectOrig( x, y + w, w, w ), tmp3 );
+					new Boobs( rectOrig( x + w, y + w, w, w ), tmp4 );
 				}
 			}, function() {
 				blocked = 0;
 			} );
-		} else {
-            nPoints += 1;
-            var w = b.attrs.width;
-			var x = b.attrs.x;
-			var y = b.attrs.y;
-            rectOrig( x, y, w, w );
-            if( nPoints == ( 512 * 512 ) / ( 4 * 4 * 1.5 ) ) {
-                discretization = 1;
-                draw("file2.jpeg");
-            }
-        }
+		};
 	};
 
 	var draw = function( filename ) {
