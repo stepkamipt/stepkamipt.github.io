@@ -120,6 +120,9 @@
         return s.rect( x, y, width, height);
     };
 
+    var drawImageRect( x, y, width, height) {
+    	drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+    }
     var nPoints = 0;
     var discretization = 4;
 
@@ -170,6 +173,7 @@
 
 		img.src = filename;
 		img.onload = function() {
+			print( 'onload ')
 			ctx.drawImage( img, 0, 0 );
 			color = function( x, y ) {
 				var data = ctx.getImageData( x, y, 1, 1 ).data;
