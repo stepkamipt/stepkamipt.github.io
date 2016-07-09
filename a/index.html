@@ -153,6 +153,9 @@
 			} );
 		} else {
             nPoints += 1;
+            var w = b.attrs.width / 2;
+			var x = b.attrs.x;
+			var y = b.attrs.y;
             rectOrig( x, y, w, w );
             if( nPoints == ( 512 * 512 ) / ( 4 * 4 * 1.5 ) ) {
                 discretization = 1;
