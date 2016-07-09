@@ -171,6 +171,7 @@
 
 		img.src = filename;
 		img.onload = function() {
+			alert('load');
 			ctx.drawImage( img, 0, 0 );
 			color = function( x, y ) {
 				var data = ctx.getImageData( x, y, 1, 1 ).data;
