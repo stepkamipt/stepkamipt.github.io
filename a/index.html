@@ -117,7 +117,7 @@
 	};
 
     var rectOrig = function( x, y, width, height ) {
-        return s.image("file2.jpeg", x, y, width, height).transform("t" + sourceX + "," + sourceY + "s" + scaleX +","+ scaleY + ",0,0");
+        return s.image("file2.jpeg", x, y, width, height)
     };
 
     var nPoints = 0;
@@ -169,7 +169,6 @@
 
 		img.src = filename;
 		img.onload = function() {
-			alert('load');
 			ctx.drawImage( img, 0, 0 );
 			color = function( x, y ) {
 				var data = ctx.getImageData( x, y, 1, 1 ).data;
