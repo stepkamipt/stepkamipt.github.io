@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="shortcut icon" href="/images/favicon.ico" />
-	<title>3 3 3 </title>
+	<meta http-equiv="Content-Type" content="text/html;
 	<link rel="stylesheet" type="text/css" href="/css/common.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="raphael.js"></script>
@@ -94,15 +92,10 @@
 <body>
 	<div id="div_page">
 		<canvas id="imgCanvas" width="1024" height="1024"></canvas>
-		<div id="div_title">3 3 3</div>
 		<div id="div_svg"></div>
 	</div>
 <script>
 	var color = function( x, y ) {
-		/*var r = Math.round( Math.random() * 255 );
-		var g = Math.round( Math.random() * 255 );
-		var b = Math.round( Math.random() * 255 );
-		return "rgb( " + r + " , " + g + " , " + b + " )";*/
 		return "#DAA482";
 	};
 
@@ -125,7 +118,7 @@
     };
 
     var nPoints = 0;
-    var discretization = 32;
+    var discretization = 16;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
@@ -205,8 +198,6 @@
 	banner();
 
 </script>
-<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20475910 = new Ya.Metrika({id:20475910, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/20475910" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
-
 <img src="player0.png" style="display: none;" />
 <img src="player1.png" style="display: none;" />
 <img src="player2.png" style="display: none;" />
