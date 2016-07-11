@@ -1,16 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="shortcut icon" href="/images/favicon.ico" />
-	<title>3 3 3 </title>
+	<meta http-equiv="Content-Type" content="text/html;
 	<link rel="stylesheet" type="text/css" href="/css/common.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="raphael.js"></script>
 	<style>
 
 		#div_page {
-			width: 512px;
+			width: 1024px;
 			margin: 0 auto;
 		}
 
@@ -21,8 +19,8 @@
 		}
 
 		#div_svg {
-			width: 512px;
-			height: 512px;
+			width: 1024px;
+			height: 1024px;
 			margin: 0 auto;
 		}
 
@@ -93,16 +91,22 @@
 </head>
 <body>
 	<div id="div_page">
-		<canvas id="imgCanvas" width="512" height="512"></canvas>
-		<div id="div_title">3 3 3</div>
+		<canvas id="imgCanvas" width="1024" height="1024"></canvas>
 		<div id="div_svg"></div>
 	</div>
 <script>
+
+	var canvas = document.getElementById('imgCanvas');
+	var context = canvas.getContext('2d');
+	var imageObj = new Image();
+
+	imageObj.onload = function() {
+		context.drawImage(imageObj, 1024, 1024);
+	};
+	imageObj.src = 'logo_small.jpg';
+
+
 	var color = function( x, y ) {
-		/*var r = Math.round( Math.random() * 255 );
-		var g = Math.round( Math.random() * 255 );
-		var b = Math.round( Math.random() * 255 );
-		return "rgb( " + r + " , " + g + " , " + b + " )";*/
 		return "#DAA482";
 	};
 
@@ -110,22 +114,27 @@
 		return Raphael( $( "#div_svg" ).position().left,  $( "#div_svg" ).position().top, width, height );
 	};
 
-	var s = svg( 512, 512 );
+	var s = svg( 1024, 1024 );
 
 	var rect = function( x, y, width, height ) {
 		return s.rect( x, y, width, height).attr( { "fill": color( x + width/2, y + height/2 ), "stroke": "none" } );
 	};
 
     var rectOrig = function( x, y, width, height ) {
-        return s.rect( x, y, width, height);
+    	var max = 20;
+    	var min = 0;
+	    var player = Math.floor(Math.random() * (max - min + 1)) + min;
+	    var filename = "player" + player.toString() + ".png";
+        return s.image(filename, x, y, width, height)
     };
 
     var nPoints = 0;
+    var discretization = 16;
 
 	var Boobs = function( b, blocked ) {
 		this.b = b;
 		this.blocked = blocked;
-		if ( b.attrs.width > 16 ) {
+		if ( b.attrs.width > 1 ) {
 			this.b.hover( function( e ) {
 				if ( blocked == 0 ) {
 					var e = e || window.event;
@@ -142,36 +151,33 @@
 					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y ) && ( Y <= y + w ) ) tmp2 = 1;
 					if ( ( X >= x ) && ( X <= x + w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp3 = 1;
 					if ( ( X >= x + w ) && ( X <= x + 2*w ) && ( Y >= y + w ) && ( Y <= y + 2*w ) ) tmp4 = 1;
-					new Boobs( rect( x, y, w, w ), tmp1 );
-					new Boobs( rect( x + w, y, w, w ), tmp2 );
-					new Boobs( rect( x, y + w, w, w ), tmp3 );
-					new Boobs( rect( x + w, y + w, w, w ), tmp4 );
+					if( w > discretization ) {
+						new Boobs( rectOrig( x, y, w, w ), tmp1 );
+						new Boobs( rectOrig( x + w, y, w, w ), tmp2 );
+						new Boobs( rectOrig( x, y + w, w, w ), tmp3 );
+						new Boobs( rectOrig( x + w, y + w, w, w ), tmp4 );
+					} else {
+						new Boobs( rect( x, y, w, w ), tmp1 );
+						new Boobs( rect( x + w, y, w, w ), tmp2 );
+						new Boobs( rect( x, y + w, w, w ), tmp3 );
+						new Boobs( rect( x + w, y + w, w, w ), tmp4 );
+					}
 				}
 			}, function() {
 				blocked = 0;
 			} );
-		} else {
-
-            nPoints += 1;
-            alert( nPoints);
-            if( nPoints > 256 ) {
-                alert( 'done!')
-            }
-        }
+		}
 	};
 
-	var draw = function() {
+	var draw = function( filename ) {
 		s.clear();
 
-		new Boobs( rect( 0, 0, 512, 512 ), 0 );
+		new Boobs( rect( 0, 0, 1024, 1024 ), 0 );
 
 		var ctx = document.getElementById('imgCanvas').getContext('2d');
 		var img = new Image();
 
-		var n = Math.round( Math.random() * 89 );
-
-		img.src = "/images/diy/" + ( n + 1 ) + ".jpg";
-		img.src = "file.jpeg";
+		img.src = filename;
 		img.onload = function() {
 			ctx.drawImage( img, 0, 0 );
 			color = function( x, y ) {
@@ -181,11 +187,7 @@
 		};
 	};
 
-	draw();
-
-	$( "#button_next" ).click( function() {
-		draw();
-	} );
+	draw( "file.jpeg");
 
 	$( ".div_b_class" )
 		.css( "top", $( window ).height() - $( ".div_b_class" ).height() - 20 )
@@ -207,6 +209,27 @@
 	banner();
 
 </script>
-<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20475910 = new Ya.Metrika({id:20475910, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/20475910" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+<img src="player0.png" style="display: none;" />
+<img src="player1.png" style="display: none;" />
+<img src="player2.png" style="display: none;" />
+<img src="player3.png" style="display: none;" />
+<img src="player4.png" style="display: none;" />
+<img src="player5.png" style="display: none;" />
+<img src="player6.png" style="display: none;" />
+<img src="player7.png" style="display: none;" />
+<img src="player8.png" style="display: none;" />
+<img src="player9.png" style="display: none;" />
+<img src="player10.png" style="display: none;" />
+<img src="player11.png" style="display: none;" />
+<img src="player12.png" style="display: none;" />
+<img src="player13.png" style="display: none;" />
+<img src="player14.png" style="display: none;" />
+<img src="player15.png" style="display: none;" />
+<img src="player16.png" style="display: none;" />
+<img src="player17.png" style="display: none;" />
+<img src="player18.png" style="display: none;" />
+<img src="player19.png" style="display: none;" />
+<img src="player20.png" style="display: none;" />
+
 </body>
 </html>
