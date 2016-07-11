@@ -29,28 +29,6 @@
 		<canvas id="imgCanvas" width="1024" height="1024"></canvas>
 		<div id="div_svg"></div>
 	</div>
-	<img src="player0.png" style="display: none;" />
-	<img src="player1.png" style="display: none;" />
-	<img src="player2.png" style="display: none;" />
-	<img src="player3.png" style="display: none;" />
-	<img src="player4.png" style="display: none;" />
-	<img src="player5.png" style="display: none;" />
-	<img src="player6.png" style="display: none;" />
-	<img src="player7.png" style="display: none;" />
-	<img src="player8.png" style="display: none;" />
-	<img src="player9.png" style="display: none;" />
-	<img src="player10.png" style="display: none;" />
-	<img src="player11.png" style="display: none;" />
-	<img src="player12.png" style="display: none;" />
-	<img src="player13.png" style="display: none;" />
-	<img src="player14.png" style="display: none;" />
-	<img src="player15.png" style="display: none;" />
-	<img src="player16.png" style="display: none;" />
-	<img src="player17.png" style="display: none;" />
-	<img src="player18.png" style="display: none;" />
-	<img src="player19.png" style="display: none;" />
-	<img src="player20.png" style="display: none;" />
-
 
 	<script>
 		var svg = function( width, height ) {
@@ -71,7 +49,7 @@
 	    	var max = 20;
 	    	var min = 0;
 		    var player = Math.floor(Math.random() * (max - min + 1)) + min;
-		    var filename = "player" + player.toString() + ".png";
+		    var filename = "stretched/player" + player.toString() + ".jpg";
 	        return s.image(filename, x, y, width, height)
 	    };
 
