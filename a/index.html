@@ -75,9 +75,9 @@
 						var tmp4 = 0;
 						if ( ( X >= x ) && ( X <= x + w1 ) && ( Y >= y ) && ( Y <= y + w1 ) ) tmp1 = 1;
 						if ( ( X >= x + w1 ) && ( X <= x + w1 + w2 ) && ( Y >= y ) && ( Y <= y + w1 ) ) tmp2 = 1;
-						if ( ( X >= x ) && ( X <= x + w ) && ( Y >= y + w ) && ( Y <= y + w1 + w2 ) ) tmp3 = 1;
+						if ( ( X >= x ) && ( X <= x + w1 ) && ( Y >= y + w1 ) && ( Y <= y + w1 + w2 ) ) tmp3 = 1;
 						if ( ( X >= x + w1 ) && ( X <= x + w1 + w2 ) && ( Y >= y + w1 ) && ( Y <= y + w1 + w2 ) ) tmp4 = 1;
-						if( w > discretization ) {
+						if( w1 > discretization ) {
 							new Boobs( rectOrig( x, y, w1, w1 ), tmp1 );
 							new Boobs( rectOrig( x + w1, y, w2, w1 ), tmp2 );
 							new Boobs( rectOrig( x, y + w1, w1, w2 ), tmp3 );
