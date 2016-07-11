@@ -1,10 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;
 	<link rel="stylesheet" type="text/css" href="/css/common.css">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="raphael.js"></script>
+	<script src="https://cdnjs.com/libraries/raphael/raphael.js"></script>
 	<style>
 
 		#div_page {
@@ -38,7 +36,7 @@
 		var s = svg( 1024, 1024 );
 
 	    var initialRect = function() {
-	        return s.image("logo_small.jpg", 0, 0, 1024, 1024);
+	        return s.image("http://d2.endata.cx/data/games/25410/logo_small.jpg", 0, 0, 1024, 1024);
 	    };
 
 		var rect = function( x, y, width, height ) {
@@ -46,10 +44,10 @@
 		};
 
 	    var rectOrig = function( x, y, width, height ) {
-	    	var max = 20;
+	    	var max = 2;
 	    	var min = 0;
 		    var player = Math.floor(Math.random() * (max - min + 1)) + min;
-		    var filename = "player" + player.toString() + ".jpg";
+		    var filename = "http://d2.endata.cx/data/games/25410/player" + player.toString() + ".jpg";
 	        return s.image(filename, x, y, width, height)
 	    };
 
@@ -112,7 +110,7 @@
 			};
 		};
 
-		draw( "logo_big.jpg");
+		draw( "http://d2.endata.cx/data/games/25410/logo_big.jpg");
 	</script>
 </body>
 </html>
