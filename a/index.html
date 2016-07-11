@@ -95,6 +95,17 @@
 		<div id="div_svg"></div>
 	</div>
 <script>
+
+	var canvas = document.getElementById('imgCanvas');
+	var context = canvas.getContext('2d');
+	var imageObj = new Image();
+
+	imageObj.onload = function() {
+		context.drawImage(imageObj, 1024, 1024);
+	};
+	imageObj.src = 'logo_small.jpg';
+
+
 	var color = function( x, y ) {
 		return "#DAA482";
 	};
