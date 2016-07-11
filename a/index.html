@@ -8,13 +8,13 @@
 	<style>
 
 		#div_page {
-			width: 1024px;
+			width: 700px;
 			margin: 0 auto;
 		}
 
 		#div_svg {
-			width: 1024px;
-			height: 1024px;
+			width: 700px;
+			height: 700px;
 			margin: 0 auto;
 		}
 
@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div id="div_page">
-		<canvas id="imgCanvas" width="1024" height="1024"></canvas>
+		<canvas id="imgCanvas" width="700" height="700"></canvas>
 		<div id="div_svg"></div>
 	</div>
 
@@ -35,10 +35,10 @@
 			return Raphael( $( "#div_svg" ).position().left,  $( "#div_svg" ).position().top, width, height );
 		};
 
-		var s = svg( 1024, 1024 );
+		var s = svg( 700, 700 );
 
 	    var initialRect = function() {
-	        return s.image("logo_small.jpg", 0, 0, 1024, 1024);
+	        return s.image("logo_small.jpg", 0, 0, 700, 700);
 	    };
 
 		var rect = function( x, y, width, height ) {
