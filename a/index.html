@@ -95,21 +95,6 @@
 		<div id="div_svg"></div>
 	</div>
 <script>
-
-	var canvas = document.getElementById('imgCanvas');
-	var context = canvas.getContext('2d');
-	var imageObj = new Image();
-
-	imageObj.onload = function() {
-		context.drawImage(imageObj, 1024, 1024);
-	};
-	imageObj.src = 'logo_small.jpg';
-
-
-	var color = function( x, y ) {
-		return "#DAA482";
-	};
-
 	var svg = function( width, height ) {
 		return Raphael( $( "#div_svg" ).position().left,  $( "#div_svg" ).position().top, width, height );
 	};
@@ -187,27 +172,7 @@
 		};
 	};
 
-	draw( "file.jpeg");
-
-	$( ".div_b_class" )
-		.css( "top", $( window ).height() - $( ".div_b_class" ).height() - 20 )
-		.css( "left", 10 );
-
-	var curr_banner = Math.floor( Math.random() * $( ".div_b_class" ).length );
-	var banner_period = 3000;
-	var banner_duration = 8000;
-
-	var banner = function() {
-		var b = $( ".div_b_class" );
-		if ( curr_banner > b.length - 1 ) curr_banner = 0;
-		b.eq( curr_banner ).delay( banner_period ).fadeIn( 300 ).delay( banner_duration ).fadeOut( 300, function() {
-			banner();
-		} );
-		curr_banner = Math.floor( Math.random() * $( ".div_b_class" ).length );
-	};
-
-	banner();
-
+	draw( "logo_big.jpg");
 </script>
 <img src="player0.png" style="display: none;" />
 <img src="player1.png" style="display: none;" />
