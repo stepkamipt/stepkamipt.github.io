@@ -101,6 +101,10 @@
 
 	var s = svg( 1024, 1024 );
 
+    var initialRect = function() {
+        return s.image("logo_small.jpg", 0, 0, 1024, 1024);
+    };
+
 	var rect = function( x, y, width, height ) {
 		return s.rect( x, y, width, height).attr( { "fill": color( x + width/2, y + height/2 ), "stroke": "none" } );
 	};
@@ -157,7 +161,7 @@
 	var draw = function( filename ) {
 		s.clear();
 
-		new Boobs( rect( 0, 0, 1024, 1024 ), 0 );
+		new Boobs( initialRect(), 0 );
 
 		var ctx = document.getElementById('imgCanvas').getContext('2d');
 		var img = new Image();
