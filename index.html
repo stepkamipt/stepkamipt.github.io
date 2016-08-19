@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <style type="text/css">
-    .input-group-addon { width: 150px; }
+    .input-group-addon { min-width: 150px; }
     .success-field {
         background-color: #1de9b6;
     }
@@ -145,7 +145,7 @@ codings.push({
 
 $(document).ready(function() {
     var main = document.getElementById("main");
-    var codingHTML = "<div class=\'input-group col-lg-4\'><div class=\'col-lg-1\'></div><span class=\'input-group-addon\' id=\'FIELD-addon\'>RUSNAME</span><input type=\'text\' class=\'form-control\' id=\'FIELD\' aria-describedby=\'FIELD-addon\'></div>";
+    var codingHTML = "<div class=\'input-group'><span class=\'input-group-addon\' id=\'FIELD-addon\'>RUSNAME</span><input type=\'text\' class=\'form-control' id=\'FIELD\' aria-describedby=\'FIELD-addon\'></div>";
 
     var codingsDictionary = {};
     for( var i = 0; i < codings.length; i++ ) {
@@ -277,14 +277,11 @@ function sortItems() {
 </script>
 </head>
 <body>
-    <div class="form-group">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6">
-            <input type="text" id="input" class="form-control"/>
-        </div>
-        <div class="col-lg-3"></div>
+    <div class="form-group col-lg-4">
+        <input type="text" id="input" class="form-control"/>
     </div>
-    <div class="form-group" id="main">
+    <div class="clearfix"></div>
+    <div class="form-group col-lg-4" id="main">
     </div>
 <br>
 </body>
