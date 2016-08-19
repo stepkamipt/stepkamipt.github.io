@@ -8,6 +8,10 @@
 
 <style type="text/css">
     .input-group-addon { width: 150px; }
+    .success-field {
+        background-color: #1de9b6;
+    }
+    .unsuccess-field { background-color: #f06292; }
 </style>
 
 <script type="text/javascript">
@@ -141,7 +145,7 @@ codings.push({
 
 $(document).ready(function() {
     var main = document.getElementById("main");
-    var codingHTML = "<div class=\'clearfix\'></div><br/><div class=\'input-group col-lg-4\'><div class=\'col-lg-1\'></div><span class=\'input-group-addon\' id=\'FIELD-addon\'>RUSNAME</span><input type=\'text\' class=\'form-control\' id=\'FIELD\' aria-describedby=\'FIELD-addon\'></div>";
+    var codingHTML = "<div class=\'input-group col-lg-4\'><div class=\'col-lg-1\'></div><span class=\'input-group-addon\' id=\'FIELD-addon\'>RUSNAME</span><input type=\'text\' class=\'form-control\' id=\'FIELD\' aria-describedby=\'FIELD-addon\'></div>";
 
     var codingsDictionary = {};
     for( var i = 0; i < codings.length; i++ ) {
@@ -156,8 +160,18 @@ $(document).ready(function() {
 
 
         for( var i = 0; i < codings.length; i++ ) {
-            $('#'+codings[i].field).val(processInput( inputText, codingsDictionary[codings[i].name], codings[i].name ));
+            var processedText = processInput( inputText, codingsDictionary[codings[i].name], codings[i].name );
+            var textarea = $('#'+codings[i].field);
+            textarea.val(processedText);
+            if( processedText.length == 0 ) {
+                textarea.removeClass('unsuccess-field').removeClass('success-field');
+            } else if( processedText.length > 0 && !processedText.includes('#')) {
+                textarea.removeClass('unsuccess-field').addClass('success-field ');
+            } else {
+                textarea.removeClass('success-field').addClass('unsuccess-field ');
+            }
         }
+        sortItems();
     };
 
 });
@@ -229,15 +243,48 @@ function prepareInput(input) {
     }
     return input;
 }
+
+function sortItems() {
+    var list = document.getElementById("main");
+    var items = list.getElementsByClassName("input-group");
+    var sortList = [];
+
+    for (var i = items.length - 1; i >= 0; i--) {
+        sortList.push(items[i]);
+        list.removeChild(items[i]);
+    }
+    sortList = sortList.reverse();
+    var swapped;
+    do {
+        swapped = false;
+        for (var i=0; i < sortList.length-1; i++) {
+            var a = sortList[i].getElementsByClassName('unsuccess-field');
+            var b = sortList[i+1].getElementsByClassName('unsuccess-field');
+
+            if (a.length > b.length ) {
+                var temp = sortList[i];
+                sortList[i] = sortList[i+1];
+                sortList[i+1] = temp;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+
+    for (var i = 0, ln = sortList.length; i < ln; i++) {
+        list.appendChild(sortList[i]);
+    }
+}
 </script>
 </head>
 <body>
-    <div class="form-group" id="main">
+    <div class="form-group">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
             <input type="text" id="input" class="form-control"/>
         </div>
         <div class="col-lg-3"></div>
+    </div>
+    <div class="form-group" id="main">
     </div>
 <br>
 </body>
